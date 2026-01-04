@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/Chat.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <!-- الشريط الجانبي الصغير -->
+        <div class="sidebarmain">
+            <a href="/index.html" class="sidebar-item">
+                <i class="fas fa-home sidebar-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="/search" class="sidebar-item">
+                <i class="fas fa-search sidebar-icon"></i>
+                <span>Search</span>
+            </a>
+            <a href="/explore" class="sidebar-item">
+                <i class="fas fa-compass sidebar-icon"></i>
+                <span>Explore</span>
+            </a>
+            <a href="/profile" class="sidebar-item">
+                <i class="fas fa-user sidebar-icon"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/page/profile.html" class="sidebar-item">
+                <i class="fas fa-cog sidebar-icon"></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <i class="fas fa-comment-dots sidebar-icon"></i>
+                <span>Messages</span>
+            </a>
+            <a href="/notifications" class="sidebar-item">
+                <i class="fas fa-bell sidebar-icon"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="/users" class="sidebar-item">
+                <i class="fas fa-users sidebar-icon"></i>
+                <span>Users</span>
+            </a>
+            <a href="/menu" class="sidebar-item">
+                <i class="fas fa-bars sidebar-icon"></i>
+                <span>Menu</span>
+            </a>
+        </div>
+        
+        <!-- Communities Sidebar -->
+        <div class="communities-sidebar" id="communitiesSidebar">
+            <h1 class="communities-header">Community</h1>
+            
+            <div class="search-bar">
+                <div class="search-icon"></div>
+                <input type="text" class="search-input" placeholder="Search">
+            </div>
+            
+            <!-- Community List -->
+            <div class="community-item active">
+                <img src="https://ui-avatars.com/api/?name=Django&background=407BFF&color=fff&size=36" alt="Django" class="community-avatar">
+                <div class="community-info">
+                    <div class="community-name">Django community</div>
+                    <div class="community-meta">
+                        <div class="community-status new-messages">5+ New Message</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-item">
+                <img src="https://ui-avatars.com/api/?name=Community&background=FF5C21&color=fff&size=36" alt="Community" class="community-avatar">
+                <div class="community-info">
+                    <div class="community-name">Community</div>
+                    <div class="community-meta">
+                        <div class="community-status new-messages">1 New Message</div>
+                        <div class="unread-indicator"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-item">
+                <img src="https://ui-avatars.com/api/?name=Community&background=1B4F81&color=fff&size=36" alt="Community" class="community-avatar">
+                <div class="community-info">
+                    <div class="community-name">Community</div>
+                    <div class="community-meta">
+                        <div class="community-status sent-time">Sent 1h ago</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-item">
+                <img src="https://ui-avatars.com/api/?name=Community&background=5C6977&color=fff&size=36" alt="Community" class="community-avatar">
+                <div class="community-info">
+                    <div class="community-name">Community</div>
+                    <div class="community-meta">
+                        <div class="last-message">No problem at all!...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="chat-user-info">
+                    <img src="https://ui-avatars.com/api/?name=Kotty+Amoer&background=FF5C21&color=fff&size=45" alt="Kotty Amoer" class="chat-user-avatar">
+                    <div class="chat-user-name">Kotty Amoer</div>
+                </div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Message Sender Label -->
+                <div class="message-sender">Ali Bebouny</div>
+                
+                <!-- Sent Messages -->
+                <div class="message sent">
+                    <div class="message-content">I'll text you when I arrive.</div>
+                    <div class="message-time">10:11</div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-content">I'll text you when I arrive.</div>
+                    <div class="message-time">10:11</div>
+                </div>
+                
+                <!-- Message Sender Label -->
+                <div class="message-sender">Ahmed muner</div>
+                
+                <!-- Received Messages -->
+                <div class="message received">
+                    <div class="message-content">Hi</div>
+                    <div class="message-status">
+                        <span class="message-time">10:10</span>
+                        <div class="status-dot"></div>
+                    </div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-content">Awesome, thanks for letting me know! Can't wait for my delivery. 🎉</div>
+                    <div class="message-status">
+                        <span class="message-time">10:10</span>
+                        <div class="status-dot"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <div class="attachment-btn">
+                    <i class="fas fa-plus" style="color: white; font-size: 18px;"></i>
+                </div>
+                
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" placeholder="Type Message..." id="messageInput">
+                </div>
+                
+                <div class="send-btn" id="sendMessage">
+                    <i class="fas fa-paper-plane" style="color: white; font-size: 16px;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Toggle Button (hidden by default) -->
+        <div class="mobile-toggle" id="mobileToggle" style="display: none;">
+            <i class="fas fa-comments" style="color: white;"></i>
+        </div>
+    </div>
+    <script src="/js/Chat.js"></script>
+</body>
+</html>

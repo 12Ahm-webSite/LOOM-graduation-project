@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loom - Login & Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;700&family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #FAFAFA;
+            font-family: 'Golos Text', Arial, sans-serif;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* Left Side - Form */
+        .form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo-text {
+            font-size: 40px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-letter {
+            color: #FF5C39;
+        }
+        
+        .logo-rest {
+            color: #0D2744;
+        }
+        
+        .logo-divider {
+            height: 2px;
+            width: 105px;
+            background-color: #FF5C39;
+            margin-top: 10px;
+        }
+        
+        /* Form Title */
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0D2744;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background-color: #FAFAFA;
+            padding: 0 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+            border-radius: 7px;
+            z-index: 2;
+        }
+        
+        .input-field {
+            width: 100%;
+            height: 56px;
+            padding: 0 20px;
+            font-size: 24px;
+            border: 3px solid #000;
+            border-radius: 13px;
+            background-color: #FAFAFA;
+            color: #333;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: #FF5C39;
+        }
+        
+        .input-field::placeholder {
+            color: #E0E0E0;
+            font-size: 24px;
+            font-weight: 400;
+        }
+        
+        .input-field.password {
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        
+        .input-field.password::placeholder {
+            letter-spacing: normal;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            height: 50px;
+            background-color: #06121F;
+            color: #FAFAFA;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0D2744;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 2px;
+            background-color: #B2B2B2;
+        }
+        
+        .divider-text {
+            padding: 0 15px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* Google Button */
+        .google-btn {
+            width: 100%;
+            height: 56px;
+            border: 3px solid #000;
+            border-radius: 14px;
+            background-color: #FAFAFA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .google-btn:hover {
+            border-color: #FF5C39;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .google-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .google-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* Switch Form Link */
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .switch-link {
+            color: #4A90E2;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .switch-link:hover {
+            color: #0D2744;
+            text-decoration: underline;
+        }
+        
+        /* Right Side - Graphics */
+        .graphics-side {
+            flex: 1;
+            background-color: #06121F;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .graphics-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .main-image {
+            width: 740px;
+            height: 882px;
+            border-radius: 54px;
+            object-fit: cover;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Floating Programming Languages */
+        .floating-text {
+            position: absolute;
+            font-size: 24px;
+            font-family: Arial;
+            font-weight: 700;
+            color: #30247D;
+        }
+        
+        .python-1 {
+            top: 5%;
+            left: 10%;
+            transform: rotate(17deg);
+        }
+        
+        .python-2 {
+            top: 85%;
+            left: 5%;
+            transform: rotate(17deg);
+        }
+        
+        .javascript {
+            top: 90%;
+            left: 60%;
+            transform: rotate(-14deg);
+        }
+        
+        .java {
+            top: 10%;
+            left: 20%;
+            transform: rotate(-31deg);
+        }
+        
+        .csharp {
+            top: 80%;
+            left: 75%;
+            transform: rotate(5deg);
+        }
+        
+        /* Logo Icon */
+        .logo-icon img {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+        }
+        
+        
+        
+        /* Verification Page Styles */
+        .verification-container {
+            display: none;
+            text-align: center;
+        }
+        
+        .verification-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0D2744;
+            margin-bottom: 20px;
+        }
+        
+        .verification-text {
+            color: #B7B7B7;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            max-width: 432px;
+            line-height: 1.5;
+        }
+        
+        .verification-code {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .code-input {
+            width: 61px;
+            height: 56px;
+            border: 3px solid #000;
+            border-radius: 13px;
+            background-color: #FAFAFA;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .code-input:focus {
+            border-color: #FF5C39;
+        }
+        
+        .resend-code {
+            color: #4A90E2;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .resend-code:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-login {
+            color: #4A90E2;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 30px;
+            display: inline-block;
+        }
+        
+        .back-to-login:hover {
+            text-decoration: underline;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #34A853;
+            margin-bottom: 20px;
+        }
+        
+        .success-text {
+            color: #0D2744;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .success-subtext {
+            color: #B7B7B7;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .form-side {
+                padding: 20px;
+                justify-content: flex-start;
+                padding-top: 40px;
+            }
+            
+            .graphics-side {
+                display: none;
+            }
+            
+            .form-container {
+                max-width: 100%;
+            }
+            
+            .logo {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .form-title {
+                font-size: 24px;
+            }
+            
+            .input-field {
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .input-field::placeholder {
+                font-size: 20px;
+            }
+            
+            .code-input {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .switch-link, .back-to-login {
+                font-size: 20px;
+            }
+        }
+        
+        /* Error Styles */
+        .error-message {
+            color: #EB4335;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-field.error {
+            border-color: #EB4335;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #06121F;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Side - Form -->
+        <div class="form-side">
+            <!-- Logo Icon -->
+            <div class="logo-icon">
+                <img src="/img/logo1.png" alt="">
+            </div>
+            
+            <!-- Login Form (Default) -->
+            <div class="form-container" id="loginForm">
+                <div class="logo">
+                    <div>
+                        <div class="logo-text">
+                            <span class="logo-letter">L</span>
+                            <span class="logo-rest">oom</span>
+                        </div>
+                        <div class="logo-divider"></div>
+                    </div>
+                </div>
+                
+                <h2 class="form-title">Login to Your Account</h2>
+                
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <div class="input-label">User name</div>
+                        <input type="text" class="input-field" placeholder="Enter your name" id="loginUsername" required>
+                        <div class="error-message" id="loginUsernameError">Please enter a valid username</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-label">Password</div>
+                        <input type="password" class="input-field password" placeholder="Enter your password" id="loginPassword" required>
+                        <div class="error-message" id="loginPasswordError">Please enter your password</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="loginSubmit">
+                        <span>Login</span>
+                        <div class="loading" id="loginLoading">
+                            <div class="spinner"></div>
+                        </div>
+                    </button>
+                </form>
+                
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-text">or</div>
+                    <div class="divider-line"></div>
+                </div>
+                
+                <div class="google-btn" id="googleLogin">
+                    <div class="google-icon">
+                        <img src="/img/googel.png" alt="">
+                    </div>
+                    <div class="google-text">Continue with Google</div>
+                </div>
+                
+                <div class="switch-form">
+                    <a class="switch-link" id="switchToRegister">Create an account</a>
+                </div>
+            </div>
+            
+            <!-- Registration Form -->
+            <div class="form-container" id="registerForm" style="display: none;">
+                <div class="logo">
+                    <div>
+                        <div class="logo-text">
+                            <span class="logo-letter">L</span>
+                            <span class="logo-rest">oom</span>
+                        </div>
+                        <div class="logo-divider"></div>
+                    </div>
+                </div>
+                
+                <h2 class="form-title">Create New Account</h2>
+                
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <div class="input-label">User name</div>
+                        <input type="text" class="input-field" placeholder="Enter your name" id="registerUsername" required>
+                        <div class="error-message" id="registerUsernameError">Please enter a valid username (min 3 characters)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-label">E-mail</div>
+                        <input type="email" class="input-field" placeholder="Enter your Email" id="registerEmail" required>
+                        <div class="error-message" id="registerEmailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-label">Password</div>
+                        <input type="password" class="input-field password" placeholder="Enter your password" id="registerPassword" required>
+                        <div class="error-message" id="registerPasswordError">Password must be at least 8 characters</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="input-label">Re-write</div>
+                        <input type="password" class="input-field password" placeholder="Enter your password" id="registerPasswordConfirm" required>
+                        <div class="error-message" id="registerPasswordConfirmError">Passwords do not match</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="registerSubmit">
+                        <span>Register</span>
+                        <div class="loading" id="registerLoading">
+                            <div class="spinner"></div>
+                        </div>
+                    </button>
+                </form>
+                
+                <div class="divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-text">or</div>
+                    <div class="divider-line"></div>
+                </div>
+                
+                <div class="google-btn" id="googleRegister">
+                    <div class="google-icon">
+                        <img src="/img/googel.png" alt="">
+                    </div>
+                    <div class="google-text">Continue with Google</div>
+                </div>
+                
+                <div class="switch-form">
+                    <a class="switch-link" id="switchToLogin">Already have an account?</a>
+                </div>
+            </div>
+            
+            <!-- Verification Form -->
+            <div class="verification-container" id="verificationForm">
+                <div class="logo">
+                    <div>
+                        <div class="logo-text">
+                            <span class="logo-letter">L</span>
+                            <span class="logo-rest">oom</span>
+                        </div>
+                        <div class="logo-divider"></div>
+                    </div>
+                </div>
+                
+                <h2 class="verification-title">Verify Your Account</h2>
+                
+                <p class="verification-text">
+                    Enter the four digit code we sent to your email address to verify your new Loom account.
+                </p>
+                
+                <div class="verification-code">
+                    <input type="text" class="code-input" maxlength="1" id="code1">
+                    <input type="text" class="code-input" maxlength="1" id="code2">
+                    <input type="text" class="code-input" maxlength="1" id="code3">
+                    <input type="text" class="code-input" maxlength="1" id="code4">
+                </div>
+                
+                <button type="button" class="submit-btn" id="verifySubmit">
+                    <span>Verify</span>
+                    <div class="loading" id="verifyLoading">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
+                
+                <div class="resend-code" id="resendCode">Resend Code</div>
+                
+                <div class="back-to-login" id="backToLogin">Back to Login</div>
+            </div>
+            
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="success-text">Account Verified Successfully!</h2>
+                <p class="success-subtext">Your account has been verified. You can now login to your Loom account.</p>
+                <button type="button" class="submit-btn" id="goToLogin">Go to Login</button>
+            </div>
+        </div>
+        
+        <!-- Right Side - Graphics -->
+        <div class="graphics-side">
+            <div class="graphics-container">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Programming" class="main-image">
+                
+                <div class="floating-text python-1">Python</div>
+                <div class="floating-text python-2">Python</div>
+                <div class="floating-text javascript">JavaScript</div>
+                <div class="floating-text java">Java</div>
+                <div class="floating-text csharp">C#</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const verificationForm = document.getElementById('verificationForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Form Elements
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const backToLogin = document.getElementById('backToLogin');
+        const goToLogin = document.getElementById('goToLogin');
+        const resendCode = document.getElementById('resendCode');
+        
+        // Login Form Elements
+        const loginFormElement = document.getElementById('loginFormElement');
+        const loginUsername = document.getElementById('loginUsername');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginSubmit = document.getElementById('loginSubmit');
+        const loginLoading = document.getElementById('loginLoading');
+        
+        // Register Form Elements
+        const registerFormElement = document.getElementById('registerFormElement');
+        const registerUsername = document.getElementById('registerUsername');
+        const registerEmail = document.getElementById('registerEmail');
+        const registerPassword = document.getElementById('registerPassword');
+        const registerPasswordConfirm = document.getElementById('registerPasswordConfirm');
+        const registerSubmit = document.getElementById('registerSubmit');
+        const registerLoading = document.getElementById('registerLoading');
+        
+        // Verification Form Elements
+        const verifySubmit = document.getElementById('verifySubmit');
+        const verifyLoading = document.getElementById('verifyLoading');
+        const codeInputs = [
+            document.getElementById('code1'),
+            document.getElementById('code2'),
+            document.getElementById('code3'),
+            document.getElementById('code4')
+        ];
+        
+        // Current user data (simulated)
+        let currentUser = null;
+        let verificationCode = null;
+        
+        // Switch between forms
+        switchToRegister.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            verificationForm.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Reset forms
+            resetForm(loginFormElement);
+        });
+        
+        switchToLogin.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            verificationForm.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Reset forms
+            resetForm(registerFormElement);
+        });
+        
+        backToLogin.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            verificationForm.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Reset verification form
+            codeInputs.forEach(input => input.value = '');
+        });
+        
+        goToLogin.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            verificationForm.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Reset all forms
+            resetForm(loginFormElement);
+            resetForm(registerFormElement);
+            codeInputs.forEach(input => input.value = '');
+        });
+        
+        // Google Login/Register
+        document.getElementById('googleLogin').addEventListener('click', handleGoogleAuth);
+        document.getElementById('googleRegister').addEventListener('click', handleGoogleAuth);
+        
+        function handleGoogleAuth() {
+            showLoading(true, 'google');
+            // Simulate API call
+            setTimeout(() => {
+                showLoading(false, 'google');
+                alert('Google authentication would be implemented here. For this demo, please use the form.');
+            }, 1500);
+        }
+        
+        // Login Form Submission
+        loginFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateLoginForm()) {
+                showLoading(true, 'login');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    showLoading(false, 'login');
+                    
+                    // In a real app, you would check credentials with a server
+                    // For this demo, we'll simulate a successful login
+                    if (loginUsername.value && loginPassword.value) {
+                        alert(`Welcome back, ${loginUsername.value}! Login successful.`);
+                        // In a real app, you would redirect to the dashboard
+                    }
+                }, 2000);
+            }
+        });
+        
+        // Register Form Submission
+        registerFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateRegisterForm()) {
+                showLoading(true, 'register');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    showLoading(false, 'register');
+                    
+                    // Store user data (in a real app, this would go to a server)
+                    currentUser = {
+                        username: registerUsername.value,
+                        email: registerEmail.value,
+                        password: registerPassword.value
+                    };
+                    
+                    // Generate a verification code (in a real app, this would be sent via email)
+                    verificationCode = generateVerificationCode();
+                    
+                    // Show verification form
+                    loginForm.style.display = 'none';
+                    registerForm.style.display = 'none';
+                    verificationForm.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    
+                    // In a real app, you would send the code via email
+                    console.log(`Verification code for ${registerEmail.value}: ${verificationCode}`);
+                    alert(`A verification code has been sent to ${registerEmail.value}. For this demo, the code is: ${verificationCode}`);
+                    
+                    // Reset register form
+                    resetForm(registerFormElement);
+                }, 2000);
+            }
+        });
+        
+        // Verification Form Submission
+        verifySubmit.addEventListener('click', function() {
+            if (validateVerificationCode()) {
+                showLoading(true, 'verify');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    showLoading(false, 'verify');
+                    
+                    // Check if code is correct
+                    const enteredCode = codeInputs.map(input => input.value).join('');
+                    
+                    if (enteredCode === verificationCode) {
+                        // Show success message
+                        verificationForm.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // In a real app, you would mark the account as verified on the server
+                        console.log(`Account verified for ${currentUser.email}`);
+                    } else {
+                        alert('Invalid verification code. Please try again.');
+                    }
+                }, 1500);
+            }
+        });
+        
+        // Resend Code
+        resendCode.addEventListener('click', function() {
+            // Generate a new verification code
+            verificationCode = generateVerificationCode();
+            
+            // In a real app, you would resend the code via email
+            console.log(`New verification code for ${currentUser.email}: ${verificationCode}`);
+            alert(`A new verification code has been sent to ${currentUser.email}. For this demo, the new code is: ${verificationCode}`);
+            
+            // Clear the code inputs
+            codeInputs.forEach(input => input.value = '');
+            codeInputs[0].focus();
+        });
+        
+        // Code Input Navigation
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                // Auto-focus next input
+                if (e.target.value && index < codeInputs.length - 1) {
+                    codeInputs[index + 1].focus();
+                }
+                
+                // Validate input (only numbers)
+                if (!/^\d*$/.test(e.target.value)) {
+                    e.target.value = '';
+                }
+            });
+            
+            input.addEventListener('keydown', (e) => {
+                // Handle backspace to focus previous input
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+                
+                // Handle arrow keys for navigation
+                if (e.key === 'ArrowLeft' && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
+                
+                if (e.key === 'ArrowRight' && index < codeInputs.length - 1) {
+                    codeInputs[index + 1].focus();
+                }
+            });
+        });
+        
+        // Form Validation Functions
+        function validateLoginForm() {
+            let isValid = true;
+            
+            // Reset errors
+            hideError('loginUsernameError');
+            hideError('loginPasswordError');
+            loginUsername.classList.remove('error');
+            loginPassword.classList.remove('error');
+            
+            // Validate username
+            if (!loginUsername.value.trim()) {
+                showError('loginUsernameError', 'Please enter your username');
+                loginUsername.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!loginPassword.value) {
+                showError('loginPasswordError', 'Please enter your password');
+                loginPassword.classList.add('error');
+                isValid = false;
+            } else if (loginPassword.value.length < 6) {
+                showError('loginPasswordError', 'Password must be at least 6 characters');
+                loginPassword.classList.add('error');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function validateRegisterForm() {
+            let isValid = true;
+            
+            // Reset errors
+            const errorIds = [
+                'registerUsernameError',
+                'registerEmailError',
+                'registerPasswordError',
+                'registerPasswordConfirmError'
+            ];
+            
+            errorIds.forEach(id => hideError(id));
+            
+            const inputs = [registerUsername, registerEmail, registerPassword, registerPasswordConfirm];
+            inputs.forEach(input => input.classList.remove('error'));
+            
+            // Validate username
+            if (!registerUsername.value.trim()) {
+                showError('registerUsernameError', 'Please enter a username');
+                registerUsername.classList.add('error');
+                isValid = false;
+            } else if (registerUsername.value.trim().length < 3) {
+                showError('registerUsernameError', 'Username must be at least 3 characters');
+                registerUsername.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!registerEmail.value.trim()) {
+                showError('registerEmailError', 'Please enter your email');
+                registerEmail.classList.add('error');
+                isValid = false;
+            } else if (!emailRegex.test(registerEmail.value)) {
+                showError('registerEmailError', 'Please enter a valid email address');
+                registerEmail.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!registerPassword.value) {
+                showError('registerPasswordError', 'Please enter a password');
+                registerPassword.classList.add('error');
+                isValid = false;
+            } else if (registerPassword.value.length < 8) {
+                showError('registerPasswordError', 'Password must be at least 8 characters');
+                registerPassword.classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate password confirmation
+            if (!registerPasswordConfirm.value) {
+                showError('registerPasswordConfirmError', 'Please confirm your password');
+                registerPasswordConfirm.classList.add('error');
+                isValid = false;
+            } else if (registerPassword.value !== registerPasswordConfirm.value) {
+                showError('registerPasswordConfirmError', 'Passwords do not match');
+                registerPasswordConfirm.classList.add('error');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function validateVerificationCode() {
+            const code = codeInputs.map(input => input.value).join('');
+            
+            if (code.length !== 4) {
+                alert('Please enter the full 4-digit code');
+                return false;
+            }
+            
+            if (!/^\d{4}$/.test(code)) {
+                alert('Verification code should contain only numbers');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Helper Functions
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+        
+        function hideError(elementId) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'none';
+        }
+        
+        function showLoading(show, formType) {
+            let button, loading;
+            
+            switch (formType) {
+                case 'login':
+                    button = loginSubmit;
+                    loading = loginLoading;
+                    break;
+                case 'register':
+                    button = registerSubmit;
+                    loading = registerLoading;
+                    break;
+                case 'verify':
+                    button = verifySubmit;
+                    loading = verifyLoading;
+                    break;
+                default:
+                    return;
+            }
+            
+            if (show) {
+                button.querySelector('span').style.display = 'none';
+                loading.style.display = 'block';
+                button.disabled = true;
+            } else {
+                button.querySelector('span').style.display = 'block';
+                loading.style.display = 'none';
+                button.disabled = false;
+            }
+        }
+        
+        function resetForm(form) {
+            form.reset();
+            
+            // Remove error classes
+            const inputs = form.querySelectorAll('.input-field');
+            inputs.forEach(input => input.classList.remove('error'));
+            
+            // Hide error messages
+            const errors = form.querySelectorAll('.error-message');
+            errors.forEach(error => error.style.display = 'none');
+        }
+        
+        function generateVerificationCode() {
+            // Generate a random 4-digit code
+            return Math.floor(1000 + Math.random() * 9000).toString();
+        }
+        
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            // Focus first code input when verification form is shown
+            codeInputs[0].focus();
+            
+            // Add some demo data for testing
+            loginUsername.value = 'demo_user';
+            loginPassword.value = 'password123';
+            
+            registerUsername.value = 'new_user';
+            registerEmail.value = 'user@example.com';
+            registerPassword.value = 'password123';
+            registerPasswordConfirm.value = 'password123';
+        });
+    </script>
+</body>
+</html>

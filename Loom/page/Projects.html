@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #06121F;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 102px;
+            background-color: #0B1F36;
+            flex-shrink: 0;
+            padding-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: #FF5C21;
+        }
+        
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-icon {
+            width: 49px;
+            height: 49px;
+            background-color: #DEE9F3;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        
+        .nav-icon.active {
+            background-color: white;
+        }
+        
+        .nav-icon.active-projects {
+            background-color: rgba(255, 255, 255, 0);
+            border: 4px solid white;
+        }
+        
+        .nav-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+        }
+        
+        .nav-label.active {
+            color: #DEE9F3;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px 40px;
+            overflow-y: auto;
+        }
+        
+        /* Header Section */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .page-title {
+            font-size: 45px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .filter-tab {
+            padding: 8px 20px;
+            background-color: #06121F;
+            border-radius: 5px;
+            border: 1px solid white;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .filter-tab:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #FF5C21;
+        }
+        
+        .filter-tab.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #2469AC;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            /* transform: translateY(-10px); */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: #FF5C21;
+        }
+        
+        .project-preview {
+            flex: 1;
+            background-color: rgba(217, 217, 217, 0);
+            border: 2px solid;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-preview.orange-border {
+            border-color: #2469AC;
+        }
+        
+        .project-preview.blue-border {
+            border-color: #2469AC;
+        }
+        
+        .project-info {
+            height: 74px;
+            background-color: rgba(217, 217, 217, 0);
+            border: 2px solid;
+            border-top: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .project-info.orange-border {
+            border-color: #2469AC;
+        }
+        
+        .project-info.blue-border {
+            border-color: #2469AC;
+        }
+        
+        .project-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .project-date {
+            font-size: 10px;
+            font-weight: 500;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* New Project Card */
+        .new-project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            border: 2px dashed #2469AC;
+            background-color: rgba(36, 105, 172, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .new-project-card:hover {
+            /* transform: translateY(-10px); */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(36, 105, 172, 0.1);
+            border-color: #FF5C21;
+        }
+        
+        .new-project-icon {
+            width: 68px;
+            height: 63px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .new-project-icon .horizontal-line {
+            width: 68px;
+            height: 2px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        .new-project-icon .vertical-line {
+            width: 2px;
+            height: 63px;
+            background-color: white;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        
+        .new-project-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Project Preview Content */
+        .preview-content {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .preview-menu {
+            width: 36px;
+            height: 29px;
+            background-color: rgba(217, 217, 217, 0);
+            border-radius: 5px;
+            border: 2px solid #2469AC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2469AC;
+            font-size: 18px;
+        }
+        
+        .preview-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .preview-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .preview-item {
+            background-color: rgba(255, 92, 33, 0.1);
+            border-radius: 5px;
+            height: 20px;
+        }
+        
+        .preview-item.blue {
+            background-color: rgba(36, 105, 172, 0.1);
+        }
+        
+        .preview-footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .preview-tag {
+            background-color: rgba(255, 92, 33, 0.2);
+            color: #2469AC;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .preview-tag.blue {
+            background-color: rgba(36, 105, 172, 0.2);
+            color: #2469AC;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .empty-icon {
+            font-size: 60px;
+            color: #2469AC;
+            margin-bottom: 20px;
+        }
+        
+        .empty-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .empty-description {
+            font-size: 16px;
+            color: #aaa;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+        
+        .create-project-btn {
+            padding: 12px 30px;
+            background-color: #2469AC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .create-project-btn:hover {
+            background-color: #1a4f8a;
+                        border-color: #FF5C21;
+
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 80px;
+            }
+            
+            .nav-label {
+                font-size: 12px;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .header-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-tabs {
+                width: 100%;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                padding: 10px 0;
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .nav-items {
+                flex-direction: row;
+                gap: 15px;
+                margin-top: 0;
+                flex-wrap: wrap;
+            }
+            
+            .nav-item {
+                width: auto;
+                padding: 5px 10px;
+            }
+            
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 15px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .filter-tab {
+                padding: 8px 15px;
+                font-size: 16px;
+            }
+            
+            .project-card, .new-project-card {
+                height: 300px;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0B1F36;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #1C3652;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #17436E;
+            border-color: #FF5C21;
+        }
+        
+        /* Animation for new project */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .new-project-card:hover .new-project-icon {
+            animation: pulse 1.5s infinite;
+            border-color: #FF5C21;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="nav-items">
+                <div class="nav-item" onclick="navigateTo('home')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Home</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('search')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Search</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('discover')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Discover</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('communities')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Communities</div>
+                </div>
+                
+                <div class="nav-item active" onclick="navigateTo('projects')">
+                    <div class="nav-icon active-projects"></div>
+                    <div class="nav-label active">Projects</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('chat')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Chat</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('notifications')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label">Notifications</div>
+                </div>
+                
+                <div class="nav-item" onclick="navigateTo('profile')">
+                    <div class="nav-icon"></div>
+                    <div class="nav-label active">Profile</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header Section -->
+            <div class="header-section">
+                <h1 class="page-title">Projects</h1>
+                
+                <div class="filter-tabs">
+                    <div class="filter-tab" onclick="setFilter('all')">All Projects</div>
+                    <div class="filter-tab active" onclick="setFilter('last-modified')">Last Modified</div>
+                    <div class="filter-tab" onclick="setFilter('recent')">Recently Created</div>
+                </div>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Project 1: LOOM -->
+                <div class="project-card" onclick="openProject('loom')">
+                    <div class="project-preview orange-border">
+                        <div class="preview-content">
+                            <div class="preview-header">
+                                <div class="preview-title">LOOM</div>
+                                <div class="preview-menu">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                            </div>
+                            <div class="preview-footer">
+                                <div class="preview-tag">Web App</div>
+                                <div class="preview-tag">React</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info orange-border">
+                        <div class="project-name">LOOM</div>
+                        <div class="project-date">Edited 1 week ago</div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Portfolio -->
+                <div class="project-card" onclick="openProject('portfolio')">
+                    <div class="project-preview blue-border">
+                        <div class="preview-content">
+                            <div class="preview-header">
+                                <div class="preview-title">Portfolio</div>
+                                <div class="preview-menu" style="border-color: #2469AC; color: #2469AC;">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                            </div>
+                            <div class="preview-footer">
+                                <div class="preview-tag blue">Portfolio</div>
+                                <div class="preview-tag blue">Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info blue-border">
+                        <div class="project-name">Portfolio</div>
+                        <div class="project-date">Edited 2 weeks ago</div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Untitled -->
+                <div class="project-card" onclick="openProject('untitled1')">
+                    <div class="project-preview blue-border">
+                        <div class="preview-content">
+                            <div class="preview-header">
+                                <div class="preview-title">Untitled</div>
+                                <div class="preview-menu" style="border-color: #2469AC; color: #2469AC;">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                            </div>
+                            <div class="preview-footer">
+                                <div class="preview-tag blue">Mobile</div>
+                                <div class="preview-tag blue">UI/UX</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info blue-border">
+                        <div class="project-name">Untitled</div>
+                        <div class="project-date">Edited 1 month ago</div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Untitled 2 -->
+                <div class="project-card" onclick="openProject('untitled2')">
+                    <div class="project-preview blue-border">
+                        <div class="preview-content">
+                            <div class="preview-header">
+                                <div class="preview-title">Untitled 2</div>
+                                <div class="preview-menu" style="border-color: #2469AC; color: #2469AC;">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                            </div>
+                            <div class="preview-footer">
+                                <div class="preview-tag blue">API</div>
+                                <div class="preview-tag blue">Node.js</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info blue-border">
+                        <div class="project-name">Untitled 2</div>
+                        <div class="project-date">Edited 1 month ago</div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Untitled 3 -->
+                <div class="project-card" onclick="openProject('untitled3')">
+                    <div class="project-preview blue-border">
+                        <div class="preview-content">
+                            <div class="preview-header">
+                                <div class="preview-title">Untitled 3</div>
+                                <div class="preview-menu" style="border-color: #2469AC; color: #2469AC;">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                            </div>
+                            <div class="preview-body">
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                                <div class="preview-item blue"></div>
+                            </div>
+                            <div class="preview-footer">
+                                <div class="preview-tag blue">Database</div>
+                                <div class="preview-tag blue">Backend</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info blue-border">
+                        <div class="project-name">Untitled 3</div>
+                        <div class="project-date">Edited 2 months ago</div>
+                    </div>
+                </div>
+                
+                <!-- New Project Card -->
+                <div class="new-project-card" onclick="createNewProject()">
+                    <div class="new-project-icon">
+                        <div class="horizontal-line"></div>
+                        <div class="vertical-line"></div>
+                    </div>
+                    <div class="new-project-text">New Project</div>
+                </div>
+            </div>
+            
+            <!-- Empty State (Hidden by default) -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h2 class="empty-title">No projects yet</h2>
+                <p class="empty-description">You haven't created any projects. Start by creating your first project to organize your work and collaborate with others.</p>
+                <button class="create-project-btn" onclick="createNewProject()">Create New Project</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const projectsGrid = document.getElementById('projectsGrid');
+        const emptyState = document.getElementById('emptyState');
+        
+        // Sample projects data
+        const projects = [
+            { id: 'loom', name: 'LOOM', date: 'Edited 1 week ago', color: 'orange', tags: ['Web App', 'React'] },
+            { id: 'portfolio', name: 'Portfolio', date: 'Edited 2 weeks ago', color: 'blue', tags: ['Portfolio', 'Design'] },
+            { id: 'untitled1', name: 'Untitled', date: 'Edited 1 month ago', color: 'blue', tags: ['Mobile', 'UI/UX'] },
+            { id: 'untitled2', name: 'Untitled 2', date: 'Edited 1 month ago', color: 'blue', tags: ['API', 'Node.js'] },
+            { id: 'untitled3', name: 'Untitled 3', date: 'Edited 2 months ago', color: 'blue', tags: ['Database', 'Backend'] }
+        ];
+        
+        // Current filter
+        let currentFilter = 'last-modified';
+        
+        // Set active filter
+        function setFilter(filter) {
+            // Update filter tabs
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Update current filter
+            currentFilter = filter;
+            
+            // Apply filter
+            applyFilter();
+        }
+        
+        // Apply current filter to projects
+        function applyFilter() {
+            // In a real app, you would filter the projects array based on the filter
+            // For now, we'll just show a message
+            console.log(`Filter applied: ${currentFilter}`);
+            
+            // Sort projects based on filter
+            let sortedProjects = [...projects];
+            
+            if (currentFilter === 'last-modified') {
+                // Sort by date (most recent first)
+                // In a real app, you would parse dates and sort
+                console.log('Sorted by last modified');
+            } else if (currentFilter === 'recent') {
+                // Sort by creation date
+                console.log('Sorted by recently created');
+            }
+            
+            // Show/hide empty state based on projects
+            if (sortedProjects.length === 0) {
+                projectsGrid.style.display = 'none';
+                emptyState.style.display = 'flex';
+            } else {
+                projectsGrid.style.display = 'grid';
+                emptyState.style.display = 'none';
+            }
+        }
+        
+        // Open project
+        function openProject(projectId) {
+            // Find project
+            const project = projects.find(p => p.id === projectId);
+            
+            if (project) {
+                alert(`Opening project: ${project.name}\n\nLast modified: ${project.date}\nTags: ${project.tags.join(', ')}`);
+                
+                // In a real app, you would redirect to the project page
+                // window.location.href = `/project/${projectId}`;
+            }
+        }
+        
+        // Create new project
+        function createNewProject() {
+            const projectName = prompt('Enter project name:');
+            
+            if (projectName) {
+                alert(`Creating new project: "${projectName}"\n\nYou'll be redirected to the project editor.`);
+                
+                // In a real app, you would:
+                // 1. Create project via API
+                // 2. Redirect to project editor
+                // window.location.href = `/project/new?name=${encodeURIComponent(projectName)}`;
+            }
+        }
+        
+        // Navigate to different pages
+        function navigateTo(page) {
+            // Update navigation active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('.nav-icon');
+                const label = item.querySelector('.nav-label');
+                
+                icon.classList.remove('active', 'active-projects');
+                label.classList.remove('active');
+                
+                // Reset to default state
+                if (!icon.classList.contains('active-projects')) {
+                    icon.style.backgroundColor = '#DEE9F3';
+                }
+                label.style.color = 'white';
+            });
+            
+            // Add active class to clicked nav item
+            const clickedItem = event.currentTarget;
+            clickedItem.classList.add('active');
+            
+            // Update icon and label
+            const icon = clickedItem.querySelector('.nav-icon');
+            const label = clickedItem.querySelector('.nav-label');
+            
+            if (page === 'projects') {
+                icon.classList.add('active-projects');
+                icon.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                icon.style.border = '4px solid white';
+                label.classList.add('active');
+                label.style.color = '#DEE9F3';
+            } else if (page === 'home' || page === 'profile') {
+                icon.classList.add('active');
+                icon.style.backgroundColor = 'white';
+                label.classList.add('active');
+                label.style.color = '#DEE9F3';
+            } else {
+                icon.style.backgroundColor = 'white';
+                label.style.color = 'white';
+            }
+            
+            // In a real app, you would load the corresponding page
+            console.log(`Navigating to: ${page}`);
+            
+            // If not on projects page, redirect
+            if (page !== 'projects') {
+                // window.location.href = `/${page}`;
+                alert(`Redirecting to ${page} page...`);
+            }
+        }
+        
+        // Handle project menu clicks
+        function setupProjectMenus() {
+            document.querySelectorAll('.preview-menu').forEach(menu => {
+                menu.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent opening project
+                    
+                    const projectCard = this.closest('.project-card');
+                    const projectName = projectCard.querySelector('.project-name').textContent;
+                    
+                    // Show context menu
+                    showProjectContextMenu(projectName, this);
+                });
+            });
+        }
+        
+        // Show project context menu
+        function showProjectContextMenu(projectName, element) {
+            // In a real app, you would show a custom context menu
+            // For simplicity, we'll use a prompt
+            const action = prompt(`Project: ${projectName}\n\nAvailable actions:\n1. Rename\n2. Duplicate\n3. Archive\n4. Delete\n\nEnter action number:`);
+            
+            if (action) {
+                const actions = {
+                    '1': 'Rename',
+                    '2': 'Duplicate',
+                    '3': 'Archive',
+                    '4': 'Delete'
+                };
+                
+                if (actions[action]) {
+                    alert(`Action "${actions[action]}" selected for project "${projectName}"`);
+                    
+                    // Perform action
+                    if (action === '1') {
+                        const newName = prompt(`Rename "${projectName}" to:`);
+                        if (newName) {
+                            // Update project name
+                            element.closest('.project-card').querySelector('.project-name').textContent = newName;
+                            element.closest('.project-card').querySelector('.preview-title').textContent = newName;
+                            alert(`Project renamed to "${newName}"`);
+                        }
+                    } else if (action === '4') {
+                        if (confirm(`Are you sure you want to delete "${projectName}"?`)) {
+                            // Remove project card
+                            element.closest('.project-card').style.display = 'none';
+                            alert(`Project "${projectName}" deleted`);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial filter
+            setFilter('last-modified');
+            
+            // Setup project menus
+            setupProjectMenus();
+            
+            // Handle responsive behavior
+            window.addEventListener('resize', handleResponsive);
+            handleResponsive();
+        });
+        
+        // Handle responsive behavior
+        function handleResponsive() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (window.innerWidth <= 768) {
+                // Mobile layout
+                console.log('Mobile layout active');
+            }
+        }
+    </script>
+</body>
+</html>

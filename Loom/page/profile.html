@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Privacy Settings</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+    <body class="dark-mode">
+    <div class="app-container">
+        <!-- الشريط الجانبي الصغير -->
+        <div class="sidebarmain">
+            <a href="/" class="sidebar-item">
+                <i class="fas fa-home sidebar-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="/search" class="sidebar-item">
+                <i class="fas fa-search sidebar-icon"></i>
+                <span>Search</span>
+            </a>
+            <a href="/explore" class="sidebar-item">
+                <i class="fas fa-compass sidebar-icon"></i>
+                <span>Explore</span>
+            </a>
+            <a href="/profile" class="sidebar-item">
+                <i class="fas fa-user sidebar-icon"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/settings" class="sidebar-item">
+                <i class="fas fa-cog sidebar-icon"></i>
+                <span>Settings</span>
+            </a>
+            <a href="/page/Chat.html" class="sidebar-item">
+                <i class="fas fa-comment-dots sidebar-icon"></i>
+                <span>Messages</span>
+            </a>
+            <a href="/notifications" class="sidebar-item">
+                <i class="fas fa-bell sidebar-icon"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="/users" class="sidebar-item">
+                <i class="fas fa-users sidebar-icon"></i>
+                <span>Users</span>
+            </a>
+            <a href="/menu" class="sidebar-item">
+                <i class="fas fa-bars sidebar-icon"></i>
+                <span>Menu</span>
+            </a>
+        </div>
+
+        <!-- الشريط الجانبي الرئيسي للإعدادات -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Settings</h2>
+            </div>
+            
+            <div class="sidebar-menu">
+                <!-- عناصر القائمة -->
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="account-center">
+                        <div class="menu-icon"><i class="fas fa-user-cog"></i></div>
+                        <span class="menu-label">Account Center</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item active" data-section="privacy-settings">
+                        <div class="menu-icon"><i class="fas fa-shield-alt"></i></div>
+                        <span class="menu-label">Privacy Settings</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="notification-settings">
+                        <div class="menu-icon"><i class="fas fa-bell"></i></div>
+                        <span class="menu-label">Notification Settings</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="appearance-settings">
+                        <div class="menu-icon"><i class="fas fa-palette"></i></div>
+                        <span class="menu-label">Appearance Settings</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="language-settings">
+                        <div class="menu-icon"><i class="fas fa-language"></i></div>
+                        <span class="menu-label">Language Settings</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="security-settings">
+                        <div class="menu-icon"><i class="fas fa-lock"></i></div>
+                        <span class="menu-label">Security Settings</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="support-help">
+                        <div class="menu-icon"><i class="fas fa-headset"></i></div>
+                        <span class="menu-label">Support & Help</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item" data-section="about">
+                        <div class="menu-icon"><i class="fas fa-info-circle"></i></div>
+                        <span class="menu-label">About</span>
+                    </div>
+                </div>
+
+                <div class="menu-item-container">
+                    <div class="menu-item logout-item" data-section="logout">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span class="menu-label">Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- المحتوى الرئيسي - سيتغير حسب القسم المختار -->
+        <div class="main-content">
+            <div id="content-header" class="content-header">
+                <!-- العنوان سيتغير ديناميكيًا -->
+            </div>
+            
+            <div id="content-body" class="content-body">
+                <!-- Content will change dynamically -->
+                <!-- Default content (Privacy Settings) -->
+                <div class="section-content" id="privacy-settings-content">
+                    <div class="subsection">
+                        <h3 class="subsection-title">Profile Visibility</h3>
+                        <div class="privacy-options">
+                            <div class="privacy-option selected" data-value="public">
+                                <div class="privacy-radio selected"></div>
+                                <div class="privacy-info">
+                                    <h4>Public</h4>
+                                    <p>If your profile is public, your information, profile, and communities can be seen by people both inside and outside the platform, even without an account.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="privacy-option" data-value="registered-users">
+                                <div class="privacy-radio"></div>
+                                <div class="privacy-info">
+                                    <h4>Registered Users</h4>
+                                    <p>If your profile is visible to registered users only, it can be seen by people who have accounts on the platform.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="privacy-option" data-value="community-members">
+                                <div class="privacy-radio"></div>
+                                <div class="privacy-info">
+                                    <h4>Community Members</h4>
+                                    <p>If your profile is visible to your communities only, it can be seen by people who share the same communities with you.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="privacy-option" data-value="only-me">
+                                <div class="privacy-radio"></div>
+                                <div class="privacy-info">
+                                    <h4>Only Me</h4>
+                                    <p>If set to "Only Me", your information, profile, and communities will be completely private.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="privacy-controls">
+                        <div class="privacy-description">
+                            <p>This option controls who can see your full profile (name, bio, skills, experience, projects, etc.).</p>
+                            <a href="#" class="learn-more">Learn more</a>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="cancel-button">Cancel</button>
+                            <button class="save-button">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>
