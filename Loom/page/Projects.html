@@ -27,75 +27,178 @@
         }
         
         /* Sidebar Navigation */
-        .sidebar {
-            width: 102px;
-            background-color: #0B1F36;
-            flex-shrink: 0;
-            padding-top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .nav-items {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 35px;
-            margin-top: 40px;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 100%;
-            padding: 10px 0;
-            position: relative;
-        }
-        
-        .nav-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: #FF5C21;
-        }
-        
-        .nav-item.active {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-icon {
-            width: 49px;
-            height: 49px;
-            background-color: #DEE9F3;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-        }
-        
-        .nav-icon.active {
-            background-color: white;
-        }
-        
-        .nav-icon.active-projects {
-            background-color: rgba(255, 255, 255, 0);
-            border: 4px solid white;
-        }
-        
-        .nav-label {
-            font-size: 14px;
-            font-weight: 700;
-            text-align: center;
-            color: white;
-        }
-        
-        .nav-label.active {
-            color: #DEE9F3;
-        }
-        
+        /* ================= Sidebar ================= */
+.sidebarmain {
+    width: 60px;
+    background-color: #06121f;
+    padding: 20px 0;
+    min-height: 100vh;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebarmain:hover {
+    width: 200px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sidebar-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.sidebar-icon {
+    width: 24px;
+    font-size: 20px;
+    color: #9CA3AF;
+}
+
+.sidebar-item:hover .sidebar-icon {
+    color: #fff;
+}
+
+.sidebar-item span {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.sidebarmain:hover .sidebar-item span {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ================= Search ================= */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+}
+
+.search-panel {
+    position: fixed;
+    width: 380px;
+    max-width: 90%;
+    background: #071826;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.6);
+}
+
+.search-panel.hidden {
+    opacity: 0;
+    transform: translateY(-8px) scale(.98);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.03);
+    border: none;
+    color: #fff;
+    outline: none;
+}
+
+.search-results {
+    margin-top: 10px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.search-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-item:hover {
+    background: rgba(255,255,255,.05);
+}
+
+.search-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #0A4073;
+}
+
+.search-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.search-sub {
+    font-size: 12px;
+    color: #9CA3AF;
+}
+
+/* ================= Notifications ================= */
+.notifications-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+}
+
+.notifications-panel {
+    position: fixed;
+    width: 320px;
+    background: #071826;
+    border-radius: 12px;
+    padding: 12px;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,.6);
+}
+
+.notifications-panel.hidden {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+}
+
+.notification-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.notification-item:hover {
+    background: rgba(255,255,255,.03);
+}
+
+.notification-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.notification-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.notification-text {
+    font-size: 13px;
+    color: #9CA3AF;
+}
+
         /* Main Content */
         .main-content {
             flex: 1;
@@ -182,7 +285,7 @@
         }
 
         .project-preview.orange-border {
-            border-color: #2469AC;
+            border-color: #FF5C21;
         }
         
         .project-preview.blue-border {
@@ -203,7 +306,7 @@
         }
         
         .project-info.orange-border {
-            border-color: #2469AC;
+            border-color: #FF5C21;
         }
         
         .project-info.blue-border {
@@ -302,11 +405,11 @@
             height: 29px;
             background-color: rgba(217, 217, 217, 0);
             border-radius: 5px;
-            border: 2px solid #2469AC;
+            border: 2px solid #FF5C21;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #2469AC;
+            color: #FF5C21;
             font-size: 18px;
         }
         
@@ -341,7 +444,7 @@
         
         .preview-tag {
             background-color: rgba(255, 92, 33, 0.2);
-            color: #2469AC;
+            color: #FF5C21;
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 12px;
@@ -525,48 +628,46 @@
 <body>
     <div class="app-container">
         <!-- Sidebar Navigation -->
-        <div class="sidebar">
-            <div class="nav-items">
-                <div class="nav-item" onclick="navigateTo('home')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Home</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('search')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Search</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('discover')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Discover</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('communities')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Communities</div>
-                </div>
-                
-                <div class="nav-item active" onclick="navigateTo('projects')">
-                    <div class="nav-icon active-projects"></div>
-                    <div class="nav-label active">Projects</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('chat')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Chat</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('notifications')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label">Notifications</div>
-                </div>
-                
-                <div class="nav-item" onclick="navigateTo('profile')">
-                    <div class="nav-icon"></div>
-                    <div class="nav-label active">Profile</div>
-                </div>
+        <div class="sidebarmain">
+            <a href="/" class="sidebar-item">
+                <i class="fas fa-home sidebar-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="sidebar-item" id="openSearch">
+                <i class="fas fa-search sidebar-icon"></i>
+                <span>Search</span>
+            </a>
+            <div id="searchModal" class="search-modal">
             </div>
+
+            <a href="/explore" class="sidebar-item">
+                <i class="fas fa-compass sidebar-icon"></i>
+                <span>Explore</span>
+            </a>
+            <a href="/profile" class="sidebar-item">
+                <i class="fas fa-user sidebar-icon"></i>
+                <span>Profile</span>
+            </a>
+            <a href="/page/profile.html" class="sidebar-item">
+                <i class="fas fa-cog sidebar-icon"></i>
+                <span>Settings</span>
+            </a>
+            <a href="/page/Chat.html" class="sidebar-item">
+                <i class="fas fa-comment-dots sidebar-icon"></i>
+                <span>Messages</span>
+            </a>
+            <a href="/notifications" class="sidebar-item">
+                <i class="fas fa-bell sidebar-icon"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="/users" class="sidebar-item">
+                <i class="fas fa-users sidebar-icon"></i>
+                <span>Users</span>
+            </a>
+            <a href="/menu" class="sidebar-item">
+                <i class="fas fa-bars sidebar-icon"></i>
+                <span>Menu</span>
+            </a>
         </div>
         
         <!-- Main Content -->

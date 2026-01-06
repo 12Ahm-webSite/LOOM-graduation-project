@@ -115,8 +115,9 @@
             color: white;
         }
         
+        
         .search-bar {
-            width: 295px;
+            /* width: 295px; */
             height: 27px;
             background-color: #1C3652;
             border-radius: 23px;

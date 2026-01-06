@@ -108,6 +108,23 @@ body {
     color: white;
     /* text-align: right; */
 }
+.selectoptions{
+    direction: ltr;
+    text-align: center;
+    font-family: 'Tajawal', sans-serif;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #06121F;
+    border: 1px solid #374151;
+    color: #9CA3AF;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
 .view-logins-button{
     margin-top: 10px;
     background-color: transparent;
@@ -173,7 +190,6 @@ body {
     direction: ltr;
     text-align: right;
     font-family: 'Tajawal', sans-serif;
-    padding: 10px 15px;
     border-radius: 8px;
     background-color: #06121F;
     border: 1px solid #374151;

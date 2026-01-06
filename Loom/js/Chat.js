@@ -140,3 +140,102 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 100);
         });
+
+        /* ================= Search ================= */
+function initSearch() {
+    const overlay = document.createElement('div');
+    overlay.className = 'search-overlay';
+
+    const panel = document.createElement('div');
+    panel.className = 'search-panel hidden';
+
+    const input = document.createElement('input');
+    input.className = 'search-input';
+    input.placeholder = 'Search...';
+
+    const results = document.createElement('div');
+    results.className = 'search-results';
+
+    panel.append(input, results);
+    overlay.append(panel);
+    document.body.append(overlay);
+
+    const dataset = [];
+    document.querySelectorAll('.friend-name').forEach(el => {
+        dataset.push({ title: el.textContent, sub: 'User' });
+    });
+
+    function render(list) {
+        results.innerHTML = '';
+        list.forEach(i => {
+            results.innerHTML += `
+                <div class="search-item">
+                    <div class="search-avatar"></div>
+                    <div>
+                        <div class="search-title">${i.title}</div>
+                        <div class="search-sub">${i.sub}</div>
+                    </div>
+                </div>`;
+        });
+    }
+
+    input.addEventListener('input', e => {
+        const q = e.target.value.toLowerCase();
+        render(dataset.filter(d => d.title.toLowerCase().includes(q)));
+    });
+
+    document.getElementById('openSearch').onclick = e => {
+        e.preventDefault();
+        const r = e.target.closest('.sidebar-item').getBoundingClientRect();
+        panel.style.left = r.right + 12 + 'px';
+        panel.style.top = r.top + 'px';
+        overlay.style.display = 'block';
+        panel.classList.remove('hidden');
+        input.focus();
+    };
+
+    overlay.onclick = e => {
+        if (e.target === overlay) overlay.style.display = 'none';
+    };
+}
+
+initSearch();
+
+/* ================= Notifications ================= */
+function initNotifications() {
+    const overlay = document.createElement('div');
+    overlay.className = 'notifications-overlay';
+
+    const panel = document.createElement('div');
+    panel.className = 'notifications-panel hidden';
+
+    panel.innerHTML = `
+        <div class="notification-item">
+            <img class="notification-avatar">
+            <div>
+                <div class="notification-title">User</div>
+                <div class="notification-text">Sent you a request</div>
+            </div>
+        </div>
+    `;
+
+    overlay.append(panel);
+    document.body.append(overlay);
+
+    document.querySelectorAll('.sidebar-item')
+        .find(a => a.textContent.trim() === 'Notifications')
+        ?.addEventListener('click', e => {
+            e.preventDefault();
+            const r = e.target.closest('.sidebar-item').getBoundingClientRect();
+            panel.style.left = r.right + 12 + 'px';
+            panel.style.top = r.top + 'px';
+            overlay.style.display = 'block';
+            panel.classList.remove('hidden');
+        });
+
+    overlay.onclick = e => {
+        if (e.target === overlay) overlay.style.display = 'none';
+    };
+}
+
+initNotifications();

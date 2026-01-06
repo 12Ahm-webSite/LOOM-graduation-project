@@ -143,24 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     
                     <div class="notification-category">
-                        <h3 class="category-title">Communities</h3>
-                        <div class="notification-option">
-                            <span class="option-label">Community posts</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="notification-option">
-                            <span class="option-label">System announcements</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="notification-category">
                         <h3 class="category-title">Email</h3>
                         <div class="notification-option">
                             <span class="option-label">Email notifications</span>
@@ -209,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="notification-option">
                             <span class="option-label">Font size</span>
                             <div class="custom-select">
-                                <select>
+                                <select class="selectoptions">
                                     <option value="small" selected>Small</option>
                                     <option value="medium" >Medium</option>
                                     <option value="large">Large</option>

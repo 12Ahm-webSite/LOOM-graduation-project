@@ -1,3 +1,63 @@
+        /* تعديل: بداية أنماط نافذة الإشعارات */
+        .notifications-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        .notifications-panel {
+            width: 320px;
+            max-width: 90%;
+            background-color: #071826;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            border-radius: 12px;
+            padding: 12px;
+            color: white;
+            position: fixed;
+            overflow: auto;
+            max-height: 70vh;
+            pointer-events: auto;
+            transition: transform 0.18s ease, opacity 0.18s ease;
+        }
+
+        .notifications-panel.hidden {
+            transform: translateY(-8px) scale(0.99);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .notifications-header {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .notification-item {
+            display:flex;
+            gap:10px;
+            align-items:center;
+            padding:10px;
+            border-radius:8px;
+            transition: background 0.12s ease;
+        }
+        .notification-item + .notification-item { margin-top:8px }
+        .notification-item:hover { background: rgba(255,255,255,0.02) }
+        .notification-avatar { width:40px; height:40px; border-radius:50%; object-fit:cover; background:#0A4073 }
+        .notification-body { flex:1 }
+        .notification-title { font-size:14px; font-weight:600 }
+        .notification-text { font-size:13px; color:#9CA3AF }
+        .notification-actions { display:flex; gap:8px }
+        .btn-notify { padding:6px 10px; border-radius:8px; border:none; cursor:pointer; font-size:13px }
+        .btn-primary { background:#407BFF; color:white }
+        .btn-muted { background: rgba(255,255,255,0.03); color:#9CA3AF }
+
+        /* تعديل: نهاية أنماط نافذة الإشعارات */
+
         * {
             margin: 0;
             padding: 0;
@@ -87,51 +147,37 @@
             min-height: 100vh;
             border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
-/* بداية  زر البحث */
-        .search-overlay {
-            position: fixed;
-            top: 18px;
-            left: 96px; /* default position when sidebar is collapsed */
-            width: 420px;
-            max-width: calc(100% - 120px);
-            z-index: 9999;
-            pointer-events: auto;
+
+        .sidebar-header {
+            padding: 0 20px 30px;
         }
-        .search-input{
-            width: 90%;
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background-color: #0B1F36;
+
+        .sidebar-title {
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 40px;
             color: white;
-            font-size: 16px;
-            margin: 3%;
-            outline: none;
+            /* text-align: right; */
         }
-        .search-panel {
-            width: 100%;
-            background-color: #071826;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.04);
-            padding: 14px;
-            transform: translateY(-6px) scale(0.98);
-            transition: transform 160ms ease, opacity 160ms ease;
-            opacity: 0;
+        
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            width: 197px;
+            background-color: #0B1F36;
+            border-radius: 20px;
+            border: 1px solid #655959;
+            padding: 15px;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-
-        .search-panel.hidden {
-            opacity: 0;
-            transform: translateY(-8px) scale(0.98);
-            pointer-events: none;
+        
+        .profile-dropdown.active {
+            display: block;
         }
-
-        .search-panel.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-        /* نهاية زر البحث */
         
         .dropdown-item {
             display: flex;
@@ -221,7 +267,6 @@
             height: 83px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 10px;
         }
         
         .friend-name {
@@ -236,17 +281,17 @@
         }
         
         .friend-status {
-            width: 42px;
-            height: 42px;
+            width: 28px;
+            height: 28px;
             background-color: #17436E;
             border-radius: 50%;
             position: relative;
-            top: -35px;
+            top: -24px;
             left: 25px;
             text-align: center;
             color: rgba(237, 229, 229, 0.566);
             align-items: center;
-            font-size: 35px;
+            font-size: 26px;
             cursor: pointer;
         }
         
@@ -258,9 +303,8 @@
         .posts-grid {
             display: grid;
             /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
-            gap: 40px;
             width: 90%;
-            padding: 100px;
+            /* padding: 100px; */
             margin: auto;
         }
         
@@ -270,6 +314,7 @@
             border: 2px solid #17436E;
             overflow: hidden;
             transition: transform 0.3s ease;
+            margin: 25px;
         }
         
         .post-card:hover {
@@ -616,3 +661,56 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #17436E;
         }
+
+        /* Floating search popup (positioned near Search) */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .search-panel {
+            width: 380px;
+            max-width: 90%;
+            height: auto;
+            max-height: 60vh;
+            background-color: #071826;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 12px;
+            transition: transform 0.18s ease, opacity 0.18s ease;
+            pointer-events: auto;
+            border-radius: 12px;
+            position: fixed;
+            overflow: hidden;
+        }
+
+        .search-panel.hidden {
+            transform: translateY(-8px) scale(0.99);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            color: #d9e6f2;
+            outline: none;
+        }
+
+        .search-results { margin-top: 10px; overflow-y: auto; max-height: calc(60vh - 80px); }
+
+        .search-item { display:flex; gap:10px; align-items:center; padding:10px; border-radius:8px; color:#fff; }
+        .search-item:hover { background: rgba(255,255,255,0.02); }
+        .search-avatar { width:44px; height:44px; border-radius:50%; object-fit:cover; background:#0A4073; }
+        .search-meta { flex:1 }
+        .search-title{ font-size:15px; font-weight:600 }
+        .search-sub{ font-size:13px; color:#9CA3AF }
+        .search-empty{ padding:10px; color:#9CA3AF }

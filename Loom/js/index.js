@@ -123,7 +123,7 @@
             handleResponsive();
         });
 
-// --- Live search overlay هنا البداية --------------------------------------------------
+// --- Live search overlay --------------------------------------------------
 function buildSearchOverlay() {
     if (document.querySelector('.search-overlay')) return;
 
@@ -211,8 +211,26 @@ function buildSearchOverlay() {
     }
 
     function openSearch() {
+        // position the panel next to the Search sidebar item if available
+        const anchor = document.getElementById('openSearch') || Array.from(document.querySelectorAll('.sidebar-item')).find(a=>a.textContent.trim() === 'Search');
+        if (anchor) {
+            const rect = anchor.getBoundingClientRect();
+            // place panel to the right of the anchor, aligned near its top
+            const left = rect.right + 12;
+            const top = Math.max(8, rect.top - 8);
+            panel.style.left = `${left}px`;
+            panel.style.top = `${top}px`;
+        } else {
+            // fallback: top-center
+            panel.style.left = '50%';
+            panel.style.top = '12px';
+            panel.style.transform = 'translateX(-50%)';
+        }
+
         panel.classList.remove('hidden');
-        overlay.style.display = 'flex';
+        overlay.style.display = 'block';
+        overlay.style.pointerEvents = 'auto';
+        // ensure transform reset when positioned via JS
         setTimeout(() => input.focus(), 120);
         performSearch('');
         document.addEventListener('keydown', onKeyDown);
@@ -221,6 +239,7 @@ function buildSearchOverlay() {
     function closeSearch() {
         panel.classList.add('hidden');
         overlay.style.display = 'none';
+        overlay.style.pointerEvents = 'none';
         document.removeEventListener('keydown', onKeyDown);
     }
 
@@ -252,7 +271,6 @@ if (searchItem) {
         searchController.openSearch();
     });
 }
-// نهاية البحث المباشر --------------------------------------------------
         
         // Handle responsive behavior
         function handleResponsive() {
@@ -267,6 +285,116 @@ if (searchItem) {
                 pageTitle.style.display = 'none';
             }
         }
+
+/* تعديل: بداية قسم نافذة الإشعارات */
+function buildNotificationsPanel() {
+    if (document.querySelector('.notifications-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'notifications-overlay';
+
+    const panel = document.createElement('div');
+    panel.className = 'notifications-panel hidden';
+
+    const header = document.createElement('div');
+    header.className = 'notifications-header';
+    header.textContent = 'Notification';
+
+    const list = document.createElement('div');
+    list.className = 'notifications-list';
+
+    // sample notifications (you can replace with dynamic data)
+    const notifications = [
+        { id:1, avatar:'/img/Ellipse 2233.png', title:'Kotty Amoer', text:'Has invited you to his project', actions:[{label:'Accept', style:'primary'}]},
+        { id:2, avatar:'/img/Ellipse 2195.png', title:'Professor Programing', text:'Followed you', actions:[{label:'Follow back', style:'muted'}]},
+        { id:3, avatar:'/img/Ellipse 2193.png', title:'King James', text:'Invited to chat', actions:[{label:'Enter chat', style:'muted'}]},
+        { id:4, avatar:'/img/Ellipse 2192.png', title:'Moriadb', text:'Invited you to his chat', actions:[{label:'Enter chat', style:'muted'}]}
+    ];
+
+    function render() {
+        list.innerHTML = '';
+        notifications.forEach(n => {
+            const item = document.createElement('div');
+            item.className = 'notification-item';
+
+            const avatar = document.createElement('img');
+            avatar.className = 'notification-avatar';
+            avatar.src = n.avatar || '';
+
+            const body = document.createElement('div');
+            body.className = 'notification-body';
+            const title = document.createElement('div'); title.className='notification-title'; title.textContent = n.title;
+            const txt = document.createElement('div'); txt.className='notification-text'; txt.textContent = n.text;
+            body.appendChild(title); body.appendChild(txt);
+
+            const actions = document.createElement('div'); actions.className = 'notification-actions';
+            n.actions.forEach(a => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-notify ' + (a.style === 'primary' ? 'btn-primary' : 'btn-muted');
+                btn.textContent = a.label;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    console.log('Notification action:', a.label, 'for', n.id);
+                    // placeholder: implement accept/follow/chat actions
+                });
+                actions.appendChild(btn);
+            });
+
+            item.appendChild(avatar);
+            item.appendChild(body);
+            item.appendChild(actions);
+            list.appendChild(item);
+        });
+    }
+
+    panel.appendChild(header);
+    panel.appendChild(list);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // keep notifications hidden until explicitly opened
+    overlay.style.display = 'none';
+    overlay.style.pointerEvents = 'none';
+    panel.classList.add('hidden');
+
+    render();
+
+    function openNotifications() {
+        // position near notifications sidebar item
+        const anchor = Array.from(document.querySelectorAll('.sidebar-item')).find(a=>a.textContent.trim() === 'Notifications' || a.href.endsWith('/notifications'));
+        if (anchor) {
+            const rect = anchor.getBoundingClientRect();
+            panel.style.left = `${rect.right + 12}px`;
+            panel.style.top = `${Math.max(8, rect.top - 8)}px`;
+        } else {
+            panel.style.left = '50%';
+            panel.style.top = '12px';
+            panel.style.transform = 'translateX(-50%)';
+        }
+        panel.classList.remove('hidden');
+        overlay.style.display = 'block';
+        overlay.style.pointerEvents = 'auto';
+    }
+
+    function closeNotifications() {
+        panel.classList.add('hidden');
+        overlay.style.display = 'none';
+        overlay.style.pointerEvents = 'none';
+    }
+
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) closeNotifications(); });
+
+    return { openNotifications, closeNotifications };
+}
+
+const notificationsController = buildNotificationsPanel();
+
+// attach to Notifications sidebar item
+const notifItem = Array.from(document.querySelectorAll('.sidebar-item')).find(a=>a.textContent.trim() === 'Notifications' || (a.getAttribute('href')||'').includes('notifications'));
+if (notifItem) {
+    notifItem.addEventListener('click', function(e){ e.preventDefault(); notificationsController.openNotifications(); });
+}
+/* تعديل: نهاية قسم نافذة الإشعارات */
         
         // Handle logout
         document.querySelector('.logout-text').addEventListener('click', function() {
