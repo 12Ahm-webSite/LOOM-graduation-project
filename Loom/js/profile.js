@@ -163,29 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="notification-section">
                     <div class="notification-category">
                         <h3 class="category-title">Theme</h3>
-                        <div class="notification-option">
-                            <span class="option-label">Dark mode</span>
-                            <label class="toggle-switch">
-                                <input type="radio" name="theme" value="dark" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="notification-option">
-                            <span class="option-label">Light mode</span>
-                            <label class="toggle-switch">
-                                <input type="radio" name="theme" value="light">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="notification-option">
-                            <span class="option-label">System theme</span>
-                            <label class="toggle-switch">
-                                <input type="radio" name="theme" value="system">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
+
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="dark" checked>
+                            <span>Dark mode</span>
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="light">
+                            <span>Light mode</span>
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="system">
+                            <span>System theme</span>
+                        </label>
                     </div>
-                    
+
                     <div class="notification-category">
                         <h3 class="category-title">Customization</h3>
                         <div class="notification-option">
@@ -193,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="custom-select">
                                 <select class="selectoptions">
                                     <option value="small" selected>Small</option>
-                                    <option value="medium" >Medium</option>
+                                    <option value="medium">Medium</option>
                                     <option value="large">Large</option>
                                 </select>
                             </div>
@@ -210,22 +204,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="notification-section">
                     <div class="notification-category">
                         <h3 class="category-title">App language</h3>
-                        <div class="notification-option">
-                            <span class="option-label">Arabic</span>
-                            <label class="toggle-switch">
-                                <input type="radio" name="app-language" value="arabic" checked>
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <div class="notification-option">
-                            <span class="option-label">English</span>
-                            <label class="toggle-switch">
-                                <input type="radio" name="app-language" value="english">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
+
+                        <label class="radio-option">
+                            <input type="radio" name="app-language" value="arabic" checked>
+                            <span>Arabic</span>
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="app-language" value="english">
+                            <span>English</span>
+                        </label>
                     </div>
-                    
+
                     <div class="action-buttons" style="margin-top: 30px;">
                         <button class="save-button">Apply changes</button>
                     </div>

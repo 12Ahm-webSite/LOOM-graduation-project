@@ -133,15 +133,26 @@ function buildSearchOverlay() {
     const panel = document.createElement('div');
     panel.className = 'search-panel hidden';
 
+    const inputWrapper = document.createElement('div');
+    inputWrapper.className = 'search-input-wrapper';
+
     const input = document.createElement('input');
     input.className = 'search-input';
     input.placeholder = 'Search';
     input.type = 'search';
 
+    const searchBtn = document.createElement('button');
+    searchBtn.className = 'search-btn';
+    searchBtn.title = 'Search';
+    searchBtn.innerHTML = '<i class="fas fa-search"></i>';
+
+    inputWrapper.appendChild(input);
+    inputWrapper.appendChild(searchBtn);
+
     const results = document.createElement('div');
     results.className = 'search-results';
 
-    panel.appendChild(input);
+    panel.appendChild(inputWrapper);
     panel.appendChild(results);
     overlay.appendChild(panel);
     document.body.appendChild(overlay);
@@ -248,8 +259,21 @@ function buildSearchOverlay() {
     }
 
     // input updates on every keystroke
-    input.addEventListener('input', function() {
-        performSearch(this.value);
+    input.addEventListener('input', function() { performSearch(this.value); });
+
+    // trigger search on Enter
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch(this.value);
+        }
+    });
+
+    // button triggers search
+    searchBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        performSearch(input.value);
+        input.focus();
     });
 
     // close when clicking outside panel
@@ -395,6 +419,82 @@ if (notifItem) {
     notifItem.addEventListener('click', function(e){ e.preventDefault(); notificationsController.openNotifications(); });
 }
 /* تعديل: نهاية قسم نافذة الإشعارات */
+
+// --- Menu popup -------------------------------------------------------
+function buildMenuPopup() {
+    if (document.querySelector('.menu-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+
+    const panel = document.createElement('div');
+    panel.className = 'menu-panel hidden';
+
+    function makeItem(icon, text, href, extraClass) {
+        const a = document.createElement(href ? 'a' : 'div');
+        a.className = 'menu-item' + (extraClass ? ' ' + extraClass : '');
+        if (href) a.href = href;
+        const i = document.createElement('i');
+        i.className = `fas ${icon} menu-icon`;
+        const t = document.createElement('div');
+        t.className = 'menu-text';
+        t.textContent = text;
+        a.appendChild(i);
+        a.appendChild(t);
+        return a;
+    }
+
+    // Items matching the screenshot
+    panel.appendChild(makeItem('fa-cog', 'Settings', '/page/profile.html'));
+    panel.appendChild(makeItem('fa-circle-info', 'About us', '#'));
+    const divider = document.createElement('div'); divider.className = 'menu-divider'; panel.appendChild(divider);
+    panel.appendChild(makeItem('fa-user', 'View profile', '/profile'));
+    const logout = makeItem('fa-sign-out-alt', 'Log out', null, 'logout-text');
+    logout.addEventListener('click', function(e){ e.preventDefault(); if (confirm('Are you sure you want to log out?')) { alert('Logged out successfully!'); } });
+    panel.appendChild(logout);
+
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+
+    // keep hidden until opened
+    overlay.style.display = 'none';
+    overlay.style.pointerEvents = 'none';
+
+    function openMenu() {
+        const anchor = document.getElementById('openMenu') || Array.from(document.querySelectorAll('.sidebar-item')).find(a=>a.textContent.trim() === 'Menu');
+        if (anchor) {
+            const rect = anchor.getBoundingClientRect();
+            panel.style.left = `${rect.right + 12}px`;
+            panel.style.top = `${Math.max(8, rect.top - 8)}px`;
+        } else {
+            panel.style.left = '50%';
+            panel.style.top = '12px';
+            panel.style.transform = 'translateX(-50%)';
+        }
+
+        panel.classList.remove('hidden');
+        overlay.style.display = 'block';
+        overlay.style.pointerEvents = 'auto';
+    }
+
+    function closeMenu() {
+        panel.classList.add('hidden');
+        overlay.style.display = 'none';
+        overlay.style.pointerEvents = 'none';
+    }
+
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) closeMenu(); });
+
+    return { openMenu, closeMenu };
+}
+
+const menuController = buildMenuPopup();
+
+// attach to Menu sidebar item
+const menuItem = document.getElementById('openMenu') || Array.from(document.querySelectorAll('.sidebar-item')).find(a=>a.textContent.trim() === 'Menu');
+if (menuItem) {
+    menuItem.addEventListener('click', function(e){ e.preventDefault(); menuController.openMenu(); });
+}
         
         // Handle logout
         document.querySelector('.logout-text').addEventListener('click', function() {
