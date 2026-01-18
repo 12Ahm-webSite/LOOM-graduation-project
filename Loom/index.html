@@ -13,44 +13,57 @@
         <!-- Sidebar Navigation -->
         <div class="sidebarmain">
             <a href="/" class="sidebar-item">
-                <i class="fas fa-home sidebar-icon"></i>
+                <img src="/img/Vector-1.png" class="sidebarmainimg" alt="">
                 <span>Home</span>
             </a>
             <a href="#" class="sidebar-item" id="openSearch">
-                <i class="fas fa-search sidebar-icon"></i>
+                <img src="/img/icons8_search 5.png" class="sidebarmainimg" alt="">
                 <span>Search</span>
             </a>
             <div id="searchModal" class="search-modal">
             </div>
 
-            <a href="/explore" class="sidebar-item">
-                <i class="fas fa-compass sidebar-icon"></i>
-                <span>Explore</span>
-            </a>
-            <a href="/profile" class="sidebar-item">
-                <i class="fas fa-user sidebar-icon"></i>
-                <span>Profile</span>
-            </a>
-            <a href="/page/profile.html" class="sidebar-item">
-                <i class="fas fa-cog sidebar-icon"></i>
-                <span>Settings</span>
-            </a>
             <a href="/page/Chat.html" class="sidebar-item">
-                <i class="fas fa-comment-dots sidebar-icon"></i>
+                <img src="/img/icons8_Chat_Bubble_2 5.png" class="sidebarmainimg" alt="">
                 <span>Messages</span>
             </a>
             <a href="/notifications" class="sidebar-item">
-                <i class="fas fa-bell sidebar-icon"></i>
+                <img src="/img/icons8_notification 5.png" class="sidebarmainimg" alt="">
                 <span>Notifications</span>
             </a>
             <a href="/users" class="sidebar-item">
-                <i class="fas fa-users sidebar-icon"></i>
-                <span>Users</span>
+                <img src="/img/Projects.png" class="sidebarmainimg" alt="">
+                <span>Projects</span>
             </a>
-            <a href="#" class="sidebar-item" id="openMenu">
-                <i class="fas fa-bars sidebar-icon"></i>
-                <span>Menu</span>
+            <a href="/profile" class="sidebar-item">
+                <img src="/img/icons8_customer_1 5.png" class="sidebarmainimg" alt="">
+                <span>Profile</span>
             </a>
+            <div class="sidebar-item menu-item">
+                <a href="/menu" class="sidebar-item">
+                    <i class="fas fa-bars sidebar-icon" style="margin-left: -20px;"></i>
+                    <span>Menu</span>
+                </a>
+
+                <div class="menu-panel">
+                    <div class="dropdown-item">
+                        <div class="dropdown-icon"><i class="fas fa-cog"></i></div>
+                        <div class="dropdown-text">Settings</div>
+                    </div>
+                    <div class="dropdown-item">
+                        <div class="dropdown-icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="dropdown-text">About us</div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item">
+                        <div class="dropdown-text">View profile</div>
+                    </div>
+                    <div class="dropdown-item logout-item">
+                        <div class="dropdown-icon"><i class="fas fa-sign-out-alt" style="color:#ff3b3b"></i></div>
+                        <div class="dropdown-text logout-text">Log out</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         
@@ -181,9 +194,67 @@
                 </div>
             </div>
             
-            <!-- Divider -->
-            <!-- <div class="section-divider"></div> -->
+
             
+            <!-- More Posts Section -->
+            <div class="posts-section">
+                <h2 class="section-title">More Posts</h2>
+                <div class="posts-grid">
+                    <!-- Post 3 -->
+                    <div class="post-card">
+                        <div class="post-media skeleton"></div>
+                        <div class="post-header">
+                            <div class="post-avatar skeleton"></div>
+                            <div class="post-author">
+                                <div class="post-author-name skeleton"></div>
+                                <div class="post-time skeleton"></div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-text skeleton"></div>
+                            <div class="post-text skeleton"></div>
+                            <div class="post-text skeleton"></div>
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <div class="action-icon skeleton"></div>
+                                <div class="action-text">Check out this amazing tutorial!</div>
+                            </div>
+                            <div class="post-action">
+                                <div class="action-icon skeleton"></div>
+                                <div class="action-text">56</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 4 -->
+                    <div class="post-card">
+                        <div class="post-media skeleton"></div>
+                        <div class="post-header">
+                            <div class="post-avatar skeleton"></div>
+                            <div class="post-author">
+                                <div class="post-author-name skeleton"></div>
+                                <div class="post-time skeleton"></div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-text skeleton"></div>
+                            <div class="post-text skeleton"></div>
+                            <div class="post-text skeleton"></div>
+                        </div>
+                        <div class="post-actions">
+                            <div class="post-action">
+                                <div class="action-icon skeleton"></div>
+                                <div class="action-text">Just joined a new community!</div>
+                            </div>
+                            <div class="post-action">
+                                <div class="action-icon skeleton"></div>
+                                <div class="action-text">23</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/js/index.js"></script>

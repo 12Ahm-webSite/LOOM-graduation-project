@@ -81,6 +81,7 @@
         
         /* sidebarmain Navigation */
         .sidebarmain {
+            position: relative;
             width: 60px;
             background-color: #06121f;
             padding: 20px 0;
@@ -216,6 +217,38 @@
         .logout-text {
             color: #FF0000 !important;
         }
+        .sidebarmainimg{
+            width: 32px;
+            /* height: 32px; */
+            margin-left: -4px;
+
+        }
+        /* Menu panel that appears on hover */
+        .menu-item { position: relative; }
+
+        .menu-panel {
+            position: absolute;
+            left: 0px;
+            bottom: -220px;
+            width: 198px;
+            background-color: #0B1F36;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 10px;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+        }
+
+        .menu-item:hover .menu-panel { display: block; }
+
+        .menu-panel .dropdown-item { padding: 10px; border-radius: 8px; display:flex; align-items:center; gap:12px; cursor:pointer; }
+        .menu-panel .dropdown-item:hover { background: rgba(255,255,255,0.02); }
+        .menu-panel .dropdown-icon { width:28px; height:28px; display:flex; align-items:center; justify-content:center; color:#9CA3AF }
+        .menu-panel .dropdown-text { font-size:14px; color:#fff; font-weight:500 }
+        .menu-panel .dropdown-divider { height:7px; background-color:#11293a; margin:8px 0; border-radius:2px }
+        .menu-panel .logout-item .dropdown-text { color:#ff3b3b; font-weight:700 }
         
         /* Main Content */
         .main-content {
@@ -688,7 +721,6 @@
             position: fixed;
             overflow: hidden;
         }
-
         .search-panel.hidden {
             transform: translateY(-8px) scale(0.99);
             opacity: 0;
@@ -705,31 +737,6 @@
             outline: none;
         }
 
-        .search-input-wrapper {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .search-input-wrapper .search-input {
-            flex: 1;
-            padding-right: 10px;
-        }
-
-        .search-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.03);
-            color: #d9e6f2;
-            padding: 10px 12px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .search-btn i { width: 16px; height: 16px }
-
         .search-results { margin-top: 10px; overflow-y: auto; max-height: calc(60vh - 80px); }
 
         .search-item { display:flex; gap:10px; align-items:center; padding:10px; border-radius:8px; color:#fff; }
@@ -739,53 +746,3 @@
         .search-title{ font-size:15px; font-weight:600 }
         .search-sub{ font-size:13px; color:#9CA3AF }
         .search-empty{ padding:10px; color:#9CA3AF }
-
-        /* Menu popup */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10001;
-            pointer-events: none;
-        }
-
-        .menu-panel {
-            width: 220px;
-            background-color: #0B2030;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.03);
-            padding: 8px;
-            transition: transform 0.15s ease, opacity 0.15s ease;
-            pointer-events: auto;
-            border-radius: 12px;
-            position: fixed;
-            color: white;
-        }
-
-        .menu-panel.hidden {
-            transform: translateY(-6px) scale(0.995);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: white;
-            text-decoration: none;
-        }
-
-        .menu-item:hover { background: rgba(255,255,255,0.02) }
-
-        .menu-icon { width: 22px; height: 22px; display:flex; align-items:center; justify-content:center; color:#9CA3AF }
-        .menu-text { font-size: 14px; font-weight: 600 }
-
-        .menu-divider { height: 1px; background-color: #0F3450; margin: 8px 0; border-radius: 2px }
-
-        .logout-text { color: #FF3333; font-weight: 700 }
